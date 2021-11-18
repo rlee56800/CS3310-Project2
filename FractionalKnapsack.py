@@ -1,7 +1,7 @@
 '''
-Task #2 – 0/1 Knapsack                                                                                        (40 Pts)
+Task #1 – Fractional Knapsack (20 Pts)
 
-Use Dynamic programming approach to implement 0/1 knapsack problem.
+Use greedy approach to implement fractional knapsack problem.
 
 INPUT:
     Ask user for knapsack capacity.
