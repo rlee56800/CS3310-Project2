@@ -16,7 +16,6 @@ OUTPUT:
 # fills knapsack; enter index of largest p/w ratio 
 def fill(tot, cap, index):
     if weight[index] > cap:
-        profitperunit[index] = -1
         return tot + profit[index] * cap, 0
     else:
         profitperunit[index] = -1
