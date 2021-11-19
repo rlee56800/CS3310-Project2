@@ -15,3 +15,10 @@ OUTPUT:
 
     Print the list of all the edges in MST and the total cost of MST.
 '''
+
+arr = []
+with open('kruskal_input.txt') as f:
+    for line in f: # read rest of lines
+        arr.append([int(x) for x in line.split()])
+
+print(arr)
