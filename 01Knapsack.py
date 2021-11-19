@@ -14,14 +14,26 @@ OUTPUT:
     output considering knapsack capacity.
 '''
 
-def knapsack():
+def fill():
     i, j = 0
+    
 
-capacity = input("Please enter value for capacity: ")
+capacity = int(input("Please enter value for capacity (for this data set, optimally under 24): "))
+#capacity = 20
+total = 0
 
-# open input.txt and take items
-file = open("input.txt", "r")
-print(file.read())
-file.close()
+with open('input.txt') as f:
+    items = int(next(f)) # read first line
+    profit = []
+    for x in next(f).split():
+        profit.append(int(x))
+    weight = []
+    for x in next(f).split():
+        weight.append(int(x))
+
+
+
+
+print("Total: " + str(total))
 
 
