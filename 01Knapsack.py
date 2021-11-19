@@ -1,5 +1,5 @@
 '''
-Task #2 – 0/1 Knapsack                                                                                        (40 Pts)
+Task #2 – 0/1 Knapsack (40 Pts)
 
 Use Dynamic programming approach to implement 0/1 knapsack problem.
 
@@ -15,25 +15,33 @@ OUTPUT:
 '''
 
 def fill():
-    i, j = 0
-    
+    for i in range(items):
+        arr.append([0])
+    for j in range(capacity):
+        arr[0].append(0)
 
-capacity = int(input("Please enter value for capacity (for this data set, optimally under 24): "))
-#capacity = 20
+    
+#capacity = int(input("Please enter value for capacity (for this data set, optimally under 24): "))
+capacity = 5 # testing
 total = 0
+profit = []
+weight = []
+arr = []
 
 with open('input.txt') as f:
-    items = int(next(f)) # read first line
-    profit = []
-    for x in next(f).split():
+    items = int(next(f)) # first number is amount of items
+    for x in next(f).split(): # first row is profit
         profit.append(int(x))
-    weight = []
-    for x in next(f).split():
+    for x in next(f).split(): # second row is weights
         weight.append(int(x))
+#print(profit)
+#print(weight)
 
+fill()
 
+for i in range(len(arr)):
+    print(arr[i])
 
-
-print("Total: " + str(total))
+#print("Total: " + str(total))
 
 
