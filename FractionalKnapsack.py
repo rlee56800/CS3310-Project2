@@ -26,7 +26,7 @@ def fill(tot, cap, index):
     
 
 capacity = int(input("Please enter value for capacity (for this data set, optimally under 24): "))
-#capacity = 20 # testing; should be 56
+#capacity = 20 # testing; should be 9.6666
 total = 0
 profit = []
 weight = []
