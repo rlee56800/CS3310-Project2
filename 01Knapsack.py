@@ -14,6 +14,9 @@ OUTPUT:
     output considering knapsack capacity.
 '''
 
+def knapsack():
+    i, j = 0
+
 capacity = input("Please enter value for capacity: ")
 
 # open input.txt and take items
