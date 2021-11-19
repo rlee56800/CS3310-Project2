@@ -16,15 +16,17 @@ OUTPUT:
 # fills knapsack; enter index of largest p/w ratio 
 def fill(tot, cap, index):
     if weight[index] > cap:
-        return tot + profit[index] * cap, 0
+        print("weight > cap HHHH")
+        return tot + (profitperunit[index] * cap), 0
     else:
+        print("cap < weight item:" + str(index))
         profitperunit[index] = -1
-        return cap - weight[index], tot + (profit[index] * weight[index])
+        return tot + (profit[index]), cap - weight[index]
     
 
 #capacity = input("Please enter value for capacity: ")
 # optimally between 2 and 24, exclusive
-capacity = 4
+capacity = 20
 total = 0
 
 '''
@@ -35,16 +37,22 @@ file.close()
 '''
 
 # Until I figure out how to read from txt file
-items = 5
-profit = [16, 10, 18, 10, 6]
-weight = [2, 5, 6, 10, 1]
+items = 3#5
+profit = [25, 24, 15]#[16, 10, 18, 10, 6]
+weight = [18, 15, 10]#[2, 5, 6, 10, 1]
 
 profitperunit = []
 for i in range(items):
     profitperunit.append(profit[i]/weight[i])
-
 total = 0
 print(profitperunit)
 
 while capacity != 0 and max(profitperunit) != -1:
+    #temp = fill(total, capacity, profitperunit.index(max(profitperunit)))
+    #total = total + temp[0]
+    #capacity = temp[1]
     total, capacity = fill(total, capacity, profitperunit.index(max(profitperunit)))
+    print(total)
+    print(capacity)
+
+print("Total: " + str(total))
