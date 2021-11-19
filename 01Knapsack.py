@@ -27,12 +27,22 @@ def fill():
                 arr[i][j] = arr[i - 1][j]
             else:
                 arr[i][j] = max(arr[i - 1][j], (profit[i-1] + arr[i-1][j - weight[i-1]]))
+    
+    '''
+    res = arr[items][capacity]
+    w = capacity
+    for i in range(len(profit), 0, -1):
+        if res <= 0:
+            break
+        if res == arr[i - 1][w]:
+            continue
+        else:
+            print(weight[i - 1])
+            res = res - profit[i - 1]
+            w = w - weight[i - 1]'''
 
-def findItems():
-    print()
-
-capacity = int(input("Please enter value for capacity: "))
-#capacity = 20#7 # testing
+#capacity = int(input("Please enter value for capacity: "))
+capacity = 20#7 # testing
 total = 0
 profit = []
 weight = []
