@@ -15,20 +15,20 @@ OUTPUT:
 '''
 
 def fill():
-    '''for i in range(items+1):
-        arr.append([0])
+    for i in range(items+1):
+        arr[i][0] = 0
     for j in range(capacity):
-        arr[0].append(0)'''
-    for i in range(items):
-        print("i: " + str(i))
-        for j in range(capacity):
-            print("j: " + str(j))
-            if weight[i] > j:
+        arr[0][j] = 0
+    for i in range(1, items+1):
+        #print("i: " + str(i))
+        for j in range(1, capacity+1):
+            #print("j: " + str(j))
+            if weight[i-1] > j:
                 arr[i][j] = arr[i - 1][j]
             else:
-                arr[i][j] = max(arr[i - 1][j], (profit[i] + arr[i-1][j - weight[i]]))
+                arr[i][j] = max(arr[i - 1][j], (profit[i-1] + arr[i-1][j - weight[i-1]]))
     
-'''#capacity = int(input("Please enter value for capacity (for this data set, optimally under 24): "))
+#capacity = int(input("Please enter value for capacity (for this data set, optimally under 24): "))
 capacity = 5 # testing
 total = 0
 profit = []
@@ -45,23 +45,25 @@ with open('input.txt') as f:
 #print(profit)
 #print(weight)
 '''
-capacity = 6
+capacity = 7
 total = 0
 items = 4
-profit = [3, 4, 8, 5]
-weight = [3, 1, 4, 3]
-arr = []
+profit = [1,4,5,7]
+weight = [1,3,4,5]
+arr = []'''
+
 for i in range(items + 1):
     arr1 = []
-    for j in range(capacity):
+    for j in range(capacity+1):
         arr1.append(0)
     arr.append(arr1)
+
 
 fill()
 
 for i in range(len(arr)):
     print(arr[i])
 
-#print("Total: " + str(arr[items][capacity]))
+print("Total: " + str(arr[items][capacity]))
 
 
