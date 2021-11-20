@@ -14,39 +14,61 @@ OUTPUT:
     Print the list of all the edges in MST and the total cost of MST.
 '''
 
-class Edge:
-    def __init__(self, p1, p2, weight):
-        self.p1 = p1
-        self.p2 = p2
-        self.weight = weight
+class Graph:
+    def __init__(self, vertices):
+        self.vertices = vertices
+        self.edges = []
 
-def kruskal():
-    sorted_arr = sorted(arr, key=lambda x: x[2])
-    F = []
-    isAValue = True
-    counter = 0
-    while len(F) > len(arr) - 1:
-        while isAValue:
-            if sorted_arr[counter] == -1:
-                counter += 1
-            else:
-                e = arr[counter][2]
-                isAValue = False
-        i, j = arr[counter][0], arr[counter][1]
-        p = 0
-        # edge (not -1)
-        # 
+    def add(self, arr):
+        self.edges.append(arr)
+
+    # Search function
+
+    def find(self, parent, i):
+        if parent[i] == i:
+            return i
+        return self.find(parent, parent[i])
+
+    def union(self, parent, rank, x, y):
+        xroot = self.find(parent, x)
+        yroot = self.find(parent, y)
+        if rank[xroot] < rank[yroot]:
+            parent[xroot] = yroot
+        elif rank[xroot] > rank[yroot]:
+            parent[yroot] = xroot
+        else:
+            parent[yroot] = xroot
+            rank[xroot] += 1
+
+    #  Applying Kruskal algorithm
+    def kruskal(self):
+        result = []
+        i, e = 0, 0
+        self.edges = sorted(self.edges, key=lambda item: item[2])
+        parent = []
+        rank = []
+        for node in range(self.vertices):
+            parent.append(node)
+            rank.append(0)
+        while e < self.vertices - 1:
+            u, v, w = self.edges[i]
+            i = i + 1
+            x = self.find(parent, u)
+            y = self.find(parent, v)
+            if x != y:
+                e = e + 1
+                result.append([u, v, w])
+                self.union(parent, rank, x, y)
+        for u, v, weight in result:
+            print(str(u) + " - " + str(v) + ": " + str(weight))
 
 
-arr = []
 with open('kruskal_input.txt') as f:
+    curGraph = Graph(int(next(f)))
     for line in f: # read rest of lines
-        arr.append([int(x) for x in line.split()])
+        arr = []
+        for x in range(10):# next(f).split():
+            arr.append(int(x))
+        curGraph.add(arr)
 
-for i in range(len(arr)):
-    print(arr[i])
-
-
-
-
-#print(sorted_arr)
+curGraph.kruskal()
