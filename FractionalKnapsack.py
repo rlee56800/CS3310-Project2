@@ -29,8 +29,8 @@ def fill(tot, cap, index):
         return tot + (profit[index]), cap - weight[index]
     
 
-#capacity = int(input("Please enter value for capacity (for this data set, optimally under 24): "))
-capacity = 20 # testing; should be 56
+capacity = int(input("Please enter value for capacity: "))
+#capacity = 20 # testing; should be 56
 total = 0
 profit = []
 weight = []
@@ -59,13 +59,14 @@ weight = [2, 5, 6, 10, 1]
 
 for i in range(items):
     profitperunit.append(profit[i]/weight[i])
-print(profitperunit)
+#print(profitperunit)
 
 while capacity != 0 and max(profitperunit) != -1: # while bag has space and there are items left
     total, capacity = fill(total, capacity, profitperunit.index(max(profitperunit)))
     #print(total)
     #print(capacity)
 
-print("Total: " + str(total))
+print("Max Profit: " + str(total))
+print("Items used (profit, then weight):")
 print(usedProfit)
 print(usedWeight)

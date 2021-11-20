@@ -79,8 +79,7 @@ fill()
 #for i in range(len(arr)):
 #    print(arr[i])
 
-print("Total: " + str(arr[items][capacity]))
+print("Max Profit: " + str(arr[items][capacity]))
+print("Items used (profit, then weight):")
 print(usedProfit)
 print(usedWeight)
-
-
