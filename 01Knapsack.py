@@ -28,26 +28,28 @@ def fill():
             else:
                 arr[i][j] = max(arr[i - 1][j], (profit[i-1] + arr[i-1][j - weight[i-1]]))
     
-    '''
-    res = arr[items][capacity]
+    
+    finTotal = arr[items][capacity]
     w = capacity
     for i in range(len(profit), 0, -1):
-        if res <= 0:
+        if finTotal <= 0:
             break
-        if res == arr[i - 1][w]:
+        if finTotal == arr[i - 1][w]:
             continue
         else:
-            print(weight[i - 1])
-            res = res - profit[i - 1]
-            w = w - weight[i - 1]'''
+            usedProfit.append(profit[i - 1])
+            usedWeight.append(weight[i-1])
+            finTotal = finTotal - profit[i - 1]
+            w = w - weight[i - 1]
 
-#capacity = int(input("Please enter value for capacity: "))
-capacity = 20#7 # testing
+capacity = int(input("Please enter value for capacity: "))
+#capacity = 20#7 # testing
 total = 0
 profit = []
 weight = []
 arr = []
-
+usedProfit = []
+usedWeight = []
 
 with open('input.txt') as f:
     items = int(next(f)) # first number is amount of items
@@ -74,9 +76,11 @@ for i in range(items + 1):
 
 fill()
 
-for i in range(len(arr)):
-    print(arr[i])
+#for i in range(len(arr)):
+#    print(arr[i])
 
 print("Total: " + str(arr[items][capacity]))
+print(usedProfit)
+print(usedWeight)
 
 
