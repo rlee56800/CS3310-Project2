@@ -12,35 +12,39 @@ OUTPUT:
 '''
 
 def find(i):
-    print(i)
     while parent[i] != i:
         
         i = parent[i]
     return i
 
 def merge(p, q):
-    if p < q:
-        parent[q] = p
-    else:
-        parent[p] = q
+    a = find(p)
+    b = find(q)
+    parent[a] = b
 
 def kruskal():
-    sorted_arr = sorted(arr, key=lambda x: x[2])
-    for i in range(1, nodes+1): # initialize n disjoint subsets
-        parent.append(i)
-    print(parent)
+    mincost = 0
+    for i in range(1, nodes): # initialize n disjoint subsets
+        parent[i] = i
     
-    while len(edgesArr) < len(arr):
-        #print("entered while")
-        e = min(sorted_arr)
-        i = e[0]
-        j = e[1]
-        p = find(i)
-        q = find(j)
-        if p != q:
-            merge(p, q)
-            edgesArr.append(e)
-            sorted_arr.remove(e)
+    edgecount = 0
+    #while len(edgesArr) < nodes - 1:
+    while edgecount < nodes - 1:
+        min = -1
+        a = -1
+        b = -1
+        for i in range(nodes):
+            for j in range(nodes):
+                if find(i) != find(j) and arr[i][j] < min:
+                    min = arr[i][j]
+                    a = i
+                    b =j
+        merge(a, b)
+        print('Edge {}:({}, {}) cost:{}'.format(edgecount, a, b, min))
+        edgecount += 1
+        mincost += min
+    print("Minimum cost= {}".format(mincost))
+        
 
 
 arr = []
@@ -51,9 +55,12 @@ with open('kruskal_input.txt') as f:
     for line in f: # read rest of lines
         arr.append([int(x) for x in line.split()])
 
+for i in range(nodes):
+    parent.append(i)
+
 #for i in range(len(arr)):
 #    print(arr[i])
 
-kruskal()
-print(edgesArr)
+#kruskal()
+#print(edgesArr)
 mst = 0
