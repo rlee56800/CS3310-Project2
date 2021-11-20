@@ -23,14 +23,11 @@ def merge(p, q):
     parent[a] = b
 
 def kruskal():
-    mincost = 0
     for i in range(1, nodes): # initialize n disjoint subsets
         parent[i] = i
     
-    edgecount = 0
-    #while len(edgesArr) < nodes - 1:
-    while edgecount < nodes - 1:
-        min = -1
+    while len(edgesArr) < nodes - 1:
+        min = 1000 # initialize number
         a = -1
         b = -1
         for i in range(nodes):
@@ -40,10 +37,7 @@ def kruskal():
                     a = i
                     b =j
         merge(a, b)
-        print('Edge {}:({}, {}) cost:{}'.format(edgecount, a, b, min))
-        edgecount += 1
-        mincost += min
-    print("Minimum cost= {}".format(mincost))
+        edgesArr.append([a, b, min])
         
 
 
@@ -55,12 +49,18 @@ with open('kruskal_input.txt') as f:
     for line in f: # read rest of lines
         arr.append([int(x) for x in line.split()])
 
-for i in range(nodes):
+
+for i in range(nodes): # initialize n disjoint subsets
     parent.append(i)
 
 #for i in range(len(arr)):
 #    print(arr[i])
 
-#kruskal()
-#print(edgesArr)
+kruskal()
+
 mst = 0
+print("Edges: ")
+for i in range(len(edgesArr)):
+    print("(" + str(edgesArr[i][0]) + ", " + str(edgesArr[i][1]) + ")")
+    mst += edgesArr[i][2]
+print("MST total cost: " + str(mst))
